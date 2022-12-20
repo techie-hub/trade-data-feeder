@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: trade-data-feeder
+spec:
+  selector:
+    matchLabels:
+      app: trade-data-feeder
+  replicas: 2
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 2
+      maxUnavailable: 0
+  template:
+    metadata:
+      namespace: merugu
+      labels:
+        app: trade-data-feeder
+    spec:
+      containers:
+        - name: trade-data-feeder
+          image: merugu/trade-data-feeder:latest
+          ports:
+            - containerPort: 8080
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: trade-data-feeder-service
+spec:
+  selector:
+    app: trade-data-feeder
+  ports:
+    - name: http
+      port: 80
+  type: NodePort
