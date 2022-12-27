@@ -1,7 +1,6 @@
 package com.techiehub.trade.data.feeder.controller;
 
 import com.techiehub.trade.data.feeder.service.StockInfoService;
-import io.swagger.annotations.ApiOperation;
 import org.apache.tomcat.util.json.ParseException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,11 +17,6 @@ public class TradeDataFeedController {
     StockInfoService stockInfoService;
 
     @GetMapping(path = "stock/{symbol}")
-    @ApiOperation(
-            value = "This endpoint will be called via Http to get stock infomration",
-            notes = "The symbol parameter is the stock symbol for which the api will return the response",
-            response = String.class
-    )
     ResponseEntity<String> getStockInfo(@PathVariable String symbol) throws IOException, ParseException {
         String response = stockInfoService.getStockInfo(symbol);
         return new ResponseEntity<>(response, HttpStatus.OK);
