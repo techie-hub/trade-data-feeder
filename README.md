@@ -20,7 +20,7 @@ And use Envoy proxy as service proxy for cloud Native applications.
   ```docker build -t yourRepositoryHere/trade-data-feeder:latest .``` \
   Note: Replace the "yourRepositoryHere" with your dockerhub repository 
 * Step 2: Push the docker image to docker hub repository \
-  ```docker push merugu/trade-data-feeder:latest ``` \
+  ```docker push yourRepositoryHere/trade-data-feeder:latest ``` \
 * Step 3: In the project root directory run the below command to deploy the application in kubernetes  \
    ```kubectl apply -f  deployment/ ``` \
 * Step 4: In lens Catalog, find the rancher-desktop kubeconfig; Add the rancher-desktop to hot bar by clicking "Add to Hot Bar"
